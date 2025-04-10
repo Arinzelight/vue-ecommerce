@@ -27,32 +27,41 @@ const sortOptions = [
 ];
 const selectedSort = ref("default");
 
-const filteredProducts = computed(() => {
-  // If no category is specified, return all products
-  if (!route.params.category) {
-    return [...products.value];
-  }
+// Computed: Filter by category first
+const categoryFilteredProducts = computed(() => {
+  if (!route.params.category) return [...products.value];
 
-  // Otherwise, filter by category
   return products.value.filter(
     (p) => p.category.name.toLowerCase() === route.params.category.toLowerCase()
   );
 });
 
-const sortedProducts = computed(() => {
-  const productsToSort = [...filteredProducts.value];
+// Computed: Filter by search query
+const searchFilteredProducts = computed(() => {
+  const searchTerm = route.query.search?.toLowerCase();
+  if (!searchTerm) return categoryFilteredProducts.value;
 
+  return categoryFilteredProducts.value.filter((p) =>
+    p.title.toLowerCase().includes(searchTerm)
+  );
+});
+
+const searchTerm = computed(() => route.query.search || "");
+
+// Computed: Sorting
+const sortedProducts = computed(() => {
+  const toSort = [...searchFilteredProducts.value];
   switch (selectedSort.value) {
     case "name-asc":
-      return productsToSort.sort((a, b) => a.title.localeCompare(b.title));
+      return toSort.sort((a, b) => a.title.localeCompare(b.title));
     case "name-desc":
-      return productsToSort.sort((a, b) => b.title.localeCompare(a.title));
+      return toSort.sort((a, b) => b.title.localeCompare(a.title));
     case "price-asc":
-      return productsToSort.sort((a, b) => a.price - b.price);
+      return toSort.sort((a, b) => a.price - b.price);
     case "price-desc":
-      return productsToSort.sort((a, b) => b.price - a.price);
+      return toSort.sort((a, b) => b.price - a.price);
     default:
-      return productsToSort;
+      return toSort;
   }
 });
 
@@ -66,11 +75,12 @@ const totalPages = computed(() => {
   return Math.ceil(sortedProducts.value.length / itemsPerPage.value);
 });
 
-// Reset to first page when sorting changes
-watch(selectedSort, () => {
+// Reset to first page when sorting or search changes
+watch([selectedSort, () => route.query.search], () => {
   currentPage.value = 1;
 });
 
+// Fetch all products
 const fetchProducts = async () => {
   isLoading.value = true;
   error.value = null;
@@ -85,30 +95,11 @@ const fetchProducts = async () => {
   }
 };
 
-const fetchCategoryProducts = async (category) => {
-  isLoading.value = true;
-  error.value = null;
-  try {
-    const response = await apiService.getProductsByCategory(category);
-    products.value = response;
-  } catch (err) {
-    error.value =
-      err.message || `Failed to fetch products for category ${category}`;
-    console.error("Category fetch error:", error.value);
-  } finally {
-    isLoading.value = false;
-  }
-};
-
-// watcher for both initial load and route changes
+// Fetch by category when route param changes
 watch(
   () => route.params.category,
   (newCategory) => {
-    if (newCategory) {
-      fetchCategoryProducts(newCategory);
-    } else {
-      fetchProducts();
-    }
+    fetchProducts();
     currentPage.value = 1;
   },
   { immediate: true }
@@ -123,6 +114,10 @@ watch(
           ? `${route.params.category} Products`
           : "All Products"
       }}
+      <span v-if="searchTerm">
+        for "<small>{{ searchTerm }}</small
+        >"</span
+      >
     </h1>
 
     <div v-if="isLoading" class="flex justify-center items-center h-64">

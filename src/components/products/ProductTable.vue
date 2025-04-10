@@ -28,8 +28,6 @@ const handleToggleFavorite = (e, product) => {
   e.stopPropagation();
   emit("toggle-favorite", product);
 };
-
-console.log("ProductTable products:", props.products);
 </script>
 
 <template>
