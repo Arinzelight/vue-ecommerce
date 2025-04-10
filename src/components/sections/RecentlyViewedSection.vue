@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import ProductCard from "@/components/products/ProductCard.vue";
+import { Clock3, ArrowRight } from "lucide-vue-next";
 
 const productStore = useProductStore();
 const recentProducts = computed(() => productStore.lastVisited.slice(0, 5));
@@ -16,18 +17,7 @@ const recentProducts = computed(() => productStore.lastVisited.slice(0, 5));
       <h2
         class="text-xl sm:text-2xl font-semibold text-gray-900 flex items-center"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 mr-2 text-primary-500"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-            clip-rule="evenodd"
-          />
-        </svg>
+        <Clock3 class="w-5 h-5 mr-2 text-primary-500" />
         Recently Viewed
       </h2>
       <router-link
@@ -35,20 +25,7 @@ const recentProducts = computed(() => productStore.lastVisited.slice(0, 5));
         class="text-sm text-primary-600 hover:text-primary-800 flex items-center"
       >
         View All
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 ml-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
+        <ArrowRight class="w-4 h-4 ml-1" />
       </router-link>
     </div>
     <div
