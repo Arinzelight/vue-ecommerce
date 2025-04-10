@@ -15,7 +15,7 @@ const error = ref(null);
 
 // Pagination
 const currentPage = ref(1);
-const itemsPerPage = ref(7);
+const itemsPerPage = ref(10);
 
 // Sorting
 const sortOptions = [
@@ -28,16 +28,15 @@ const sortOptions = [
 const selectedSort = ref("default");
 
 const filteredProducts = computed(() => {
-  let result = [...products.value];
-
-  if (route.params.category) {
-    result = result.filter(
-      (p) =>
-        p.category.name.toLowerCase() === route.params.category.toLowerCase()
-    );
+  // If no category is specified, return all products
+  if (!route.params.category) {
+    return [...products.value];
   }
 
-  return result;
+  // Otherwise, filter by category
+  return products.value.filter(
+    (p) => p.category.name.toLowerCase() === route.params.category.toLowerCase()
+  );
 });
 
 const sortedProducts = computed(() => {
@@ -104,9 +103,7 @@ const fetchCategoryProducts = async (category) => {
 // watcher for both initial load and route changes
 watch(
   () => route.params.category,
-  (newCategory, oldCategory) => {
-    if (newCategory === oldCategory) return;
-
+  (newCategory) => {
     if (newCategory) {
       fetchCategoryProducts(newCategory);
     } else {
