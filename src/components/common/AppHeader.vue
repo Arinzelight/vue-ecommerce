@@ -34,10 +34,10 @@ const toggleMobileMenu = () => {
             to="/"
             class="text-2xl font-bold tracking-tight font-display"
           >
-            <h2 class="text-2xl font-bold mb-3 flex items-center gap-2">
+            <div class="text-2xl font-bold mb-3 flex items-center gap-2">
               <ShoppingCart class="w-6 h-6 text-white" />
               VueShop
-            </h2>
+            </div>
           </router-link>
           <button class="md:hidden p-2 text-white" @click="toggleMobileMenu">
             <AlignRight class="w-7 h-7" />
@@ -56,9 +56,9 @@ const toggleMobileMenu = () => {
             />
             <button
               @click="searchProducts"
-              class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600 p-3 rounded-full"
             >
-              <Search class="w-5 h-5" />
+              <Search class="w-6 h-6" />
             </button>
           </div>
         </div>

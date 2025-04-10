@@ -87,7 +87,7 @@ const handleTouchEnd = (e) => {
           v-for="(slide, index) in slides"
           v-show="currentIndex === index"
           :key="index"
-          class="absolute inset-0 transition-all duration-1000 ease-in-out bg-cover bg-center"
+          class="absolute inset-0 transition-all duration-100 ease-in-out bg-cover bg-center"
           :style="{
             backgroundImage: `url(${slide.image})`,
             transform: 'scale(1.05)',
@@ -119,7 +119,7 @@ const handleTouchEnd = (e) => {
     <!-- Indicators -->
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
       <button
-        v-for="(slide, index) in slides"
+        v-for="index in slides"
         :key="index"
         class="h-1.5 w-8 rounded-sm transition-all duration-300"
         :class="currentIndex === index ? 'bg-white' : 'bg-white/40'"

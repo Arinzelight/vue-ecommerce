@@ -1,4 +1,3 @@
-<!-- components/sections/FavoritesSection.vue -->
 <script setup>
 import { computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
@@ -11,7 +10,7 @@ const favoriteProducts = computed(() => productStore.favorites.slice(0, 5));
 <template>
   <section
     v-if="favoriteProducts.length"
-    class="bg-white p-4 sm:p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+    class="bg-white p-4 sm:p-6 rounded-xl border border-gray-100"
   >
     <div class="flex justify-between items-center mb-4 sm:mb-6">
       <h2

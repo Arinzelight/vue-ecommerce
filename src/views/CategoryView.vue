@@ -14,7 +14,6 @@ const fetchCategories = async () => {
     categories.value = await apiService.getCategories();
   } catch (err) {
     error.value = "Failed to load categories. Please try again later.";
-    console.error("Failed to fetch categories:", err);
   } finally {
     isLoading.value = false;
   }

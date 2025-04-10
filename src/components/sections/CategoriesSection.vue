@@ -18,7 +18,6 @@ const fetchCategories = async () => {
     categories.value = await apiService.getCategories();
   } catch (err) {
     error.value = "Failed to load categories. Please try again later.";
-    console.error("Failed to fetch categories:", err);
   } finally {
     isLoading.value = false;
   }
@@ -55,7 +54,7 @@ const scrollRight = () => {
 </script>
 
 <template>
-  <section class="mb-12">
+  <section class="mb-10">
     <h2 class="text-3xl font-semibold text-gray-900 mb-6">Shop by Category</h2>
 
     <!-- Error & Loading States -->
@@ -64,15 +63,6 @@ const scrollRight = () => {
       class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded"
     >
       <p>{{ error }}</p>
-    </div>
-
-    <div
-      v-if="isLoading"
-      class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
-    >
-      <div
-        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"
-      ></div>
     </div>
 
     <!-- Scrollable Categories with buttons -->

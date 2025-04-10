@@ -2,9 +2,6 @@
 import { RouterView } from "vue-router";
 import AppHeader from "@/components/common/AppHeader.vue";
 import AppFooter from "@/components/common/AppFooter.vue";
-// import { useProductStore } from "@/stores/productStore";
-
-// const productStore = useProductStore();
 </script>
 
 <template>
@@ -21,16 +18,3 @@ import AppFooter from "@/components/common/AppFooter.vue";
     <AppFooter />
   </div>
 </template>
-
-<style>
-/* Page transition animations */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

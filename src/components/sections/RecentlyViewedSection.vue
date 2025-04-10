@@ -1,4 +1,3 @@
-<!-- components/sections/RecentlyViewedSection.vue -->
 <script setup>
 import { computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
@@ -6,13 +5,12 @@ import ProductCard from "@/components/products/ProductCard.vue";
 
 const productStore = useProductStore();
 const recentProducts = computed(() => productStore.lastVisited.slice(0, 5));
-console.log(recentProducts.value);
 </script>
 
 <template>
   <section
     v-if="recentProducts.length"
-    class="bg-white p-4 sm:p-6 mb-[4rem] rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+    class="bg-white p-4 sm:p-6 mb-[2rem] rounded-xl border border-gray-100"
   >
     <div class="flex justify-between items-center mb-4 sm:mb-6">
       <h2

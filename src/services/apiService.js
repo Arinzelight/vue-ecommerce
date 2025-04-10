@@ -13,7 +13,6 @@ export default {
       const response = await apiClient.get("/categories");
       return response.data;
     } catch (error) {
-      console.error("Error fetching categories:", error);
       throw error;
     }
   },
@@ -23,7 +22,6 @@ export default {
       const response = await apiClient.get(`/products?category=${category}`);
       return response.data;
     } catch (error) {
-      console.error(`Error fetching products for category ${category}:`, error);
       throw error;
     }
   },
@@ -33,7 +31,6 @@ export default {
       const response = await apiClient.get("/products");
       return response.data;
     } catch (error) {
-      console.error("Error fetching all products:", error);
       throw error;
     }
   },
@@ -43,7 +40,6 @@ export default {
       const response = await apiClient.get(`/products/${id}`);
       return response.data;
     } catch (error) {
-      console.error(`Error fetching product with id ${id}:`, error);
       throw error;
     }
   },
@@ -55,7 +51,6 @@ export default {
         product.title.toLowerCase().includes(query.toLowerCase())
       );
     } catch (error) {
-      console.error("Error searching products:", error);
       throw error;
     }
   },
