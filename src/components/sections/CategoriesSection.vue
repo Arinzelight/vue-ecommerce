@@ -69,7 +69,7 @@ const scrollRight = () => {
     <div class="relative">
       <div
         ref="containerRef"
-        class="flex overflow-x-auto gap-6 py-4 scroll-smooth"
+        class="flex overflow-x-auto space-y-6 space-x-4 py-4 scroll-smooth"
       >
         <CategoryCard
           v-for="category in categories"
