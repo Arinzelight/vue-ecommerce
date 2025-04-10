@@ -22,7 +22,7 @@ const favoriteProducts = computed(() => productStore.favorites.slice(0, 5));
       </h2>
       <router-link
         to="/favorites"
-        class="text-sm text-primary-600 hover:text-primary-800 flex items-center"
+        class="text-sm text-primary hover:text-primary-700 flex items-center"
       >
         View All
         <ArrowRight class="h-4 w-4 ml-1" />

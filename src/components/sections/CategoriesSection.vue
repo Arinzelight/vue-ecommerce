@@ -54,7 +54,7 @@ const scrollRight = () => {
 </script>
 
 <template>
-  <section class="mb-10">
+  <section>
     <h2 class="text-3xl font-semibold text-gray-900 mb-6">Shop by Category</h2>
 
     <!-- Error & Loading States -->

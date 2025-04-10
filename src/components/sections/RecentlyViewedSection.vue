@@ -17,12 +17,12 @@ const recentProducts = computed(() => productStore.lastVisited.slice(0, 5));
       <h2
         class="text-xl sm:text-2xl font-semibold text-gray-900 flex items-center"
       >
-        <Clock3 class="w-5 h-5 mr-2 text-primary-500" />
+        <Clock3 class="w-5 h-5 mr-2 text-primary" />
         Recently Viewed
       </h2>
       <router-link
         to="/products"
-        class="text-sm text-primary-600 hover:text-primary-800 flex items-center"
+        class="text-sm text-primary hover:text-primary-700 flex items-center"
       >
         View All
         <ArrowRight class="w-4 h-4 ml-1" />

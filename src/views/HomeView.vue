@@ -6,7 +6,7 @@ import FavoritesSection from "@/components/sections/FavoritesSection.vue";
 </script>
 
 <template>
-  <div class="container mx-auto sm:px-3 px-0">
+  <div class="container">
     <!-- Hero Section -->
 
     <HeroSection />

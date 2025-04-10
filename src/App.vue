@@ -10,7 +10,7 @@ import AppFooter from "@/components/common/AppFooter.vue";
     <AppHeader />
 
     <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <main class="flex-grow container mx-auto sm:px-4 px-1 py-8">
       <RouterView />
     </main>
 
