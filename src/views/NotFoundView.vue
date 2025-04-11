@@ -8,7 +8,7 @@ import { RouterLink } from "vue-router";
     <p class="text-xl mb-5">This page does not exist</p>
     <RouterLink
       to="/"
-      class="text-white bg-primary-600 hover:bg-primary-700 rounded-md px-3 py-2 mt-4"
+      class="text-white bg-primary hover:bg-primary-700 rounded-md px-3 py-2 mt-4"
       >Go Back</RouterLink
     >
   </section>

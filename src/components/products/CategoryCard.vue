@@ -21,16 +21,16 @@ const navigateToCategory = () => {
 <template>
   <div
     @click="navigateToCategory"
-    class="cursor-pointer rounded-xl overflow-hidden shadow-md hover:shadow-lg transition transform hover:scale-105 bg-white"
+    class="cursor-pointer bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition transform hover:scale-105"
   >
     <img
-      :src="category.image || 'https://placehold.co/400'"
+      :src="category?.image"
       :alt="category.name"
       class="h-40 w-full object-cover"
       loading="lazy"
     />
     <div class="p-4 text-center">
-      <h3 class="text-lg font-semibold text-gray-800 capitalize truncate">
+      <h3 class="text-lg font-semibold capitalize truncate">
         {{ category.name }}
       </h3>
     </div>

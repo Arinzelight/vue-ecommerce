@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import { Heart, X } from "lucide-vue-next";
+import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
 defineProps({ isOpen: Boolean });
 const productStore = useProductStore();
@@ -11,7 +12,7 @@ const favoritesCount = computed(() => productStore.favorites.length);
 <template>
   <div
     v-if="isOpen"
-    class="md:hidden absolute top-0 left-0 w-full bg-primary text-white z-50 p-6"
+    class="md:hidden absolute top-0 left-0 w-full bg-primary dark:bg-gray-900 text-white z-50 p-6"
   >
     <div class="flex justify-between items-center">
       <router-link
@@ -46,6 +47,9 @@ const favoritesCount = computed(() => productStore.favorites.length);
           {{ favoritesCount }}
         </span>
       </router-link>
+      <div>
+        <ThemeToggle />
+      </div>
     </nav>
   </div>
 </template>

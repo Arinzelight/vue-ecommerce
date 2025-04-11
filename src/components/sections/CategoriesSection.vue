@@ -55,7 +55,7 @@ const scrollRight = () => {
 
 <template>
   <section>
-    <h2 class="text-3xl font-semibold text-gray-900 mb-6">Shop by Category</h2>
+    <h2 class="text-3xl font-semibold mb-6">Shop by Category</h2>
 
     <!-- Error & Loading States -->
     <div
@@ -86,7 +86,7 @@ const scrollRight = () => {
           'opacity-50 cursor-not-allowed': isAtStart,
           'opacity-100': !isAtStart,
         }"
-        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full transition-opacity"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-opacity bg-black/40 hover:bg-black/60 text-white"
         :disabled="isAtStart"
       >
         <ChevronLeft class="w-6 h-6" />
@@ -99,7 +99,7 @@ const scrollRight = () => {
           'opacity-50 cursor-not-allowed': isAtEnd,
           'opacity-100': !isAtEnd,
         }"
-        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full transition-opacity"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-opacity bg-black/40 hover:bg-black/60 text-white"
         :disabled="isAtEnd"
       >
         <ChevronRight class="w-6 h-6" />

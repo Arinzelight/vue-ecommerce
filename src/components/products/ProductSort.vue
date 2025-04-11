@@ -25,12 +25,14 @@ const handleChange = (event) => {
 
 <template>
   <div class="flex items-center gap-2">
-    <label for="sort" class="text-gray-600 whitespace-nowrap">Sort by:</label>
+    <label for="sort" class="text-gray-600 dark:text-white whitespace-nowrap"
+      >Sort by:</label
+    >
     <select
       id="sort"
       :value="modelValue"
       @change="handleChange"
-      class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+      class="border border-gray-300 dark:bg-gray-800 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
     >
       <option
         v-for="option in options"

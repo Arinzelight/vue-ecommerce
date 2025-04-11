@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import apiService from "@/services/apiService";
 import CategoryCard from "@/components/products/CategoryCard.vue";
+import { Loader2 } from "lucide-vue-next";
 
 const categories = ref([]);
 const isLoading = ref(false);
@@ -25,14 +26,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto py-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-8">Product Categories</h1>
+  <div class="container mx-auto py-8 mb-8">
+    <h1 class="text-3xl font-bold">Product Categories</h1>
 
     <!-- Loading State -->
     <div v-if="isLoading" class="flex justify-center items-center h-64">
-      <div
-        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"
-      ></div>
+      <Loader2 class="h-12 w-12 text-primary-500 animate-spin" />
     </div>
 
     <!-- Error State -->
@@ -51,7 +50,7 @@ onMounted(() => {
     <!-- Categories List -->
     <div
       v-else
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+      class="grid grid-cols-2 sm:grid-cols-3 mt-10 md:grid-cols-4 lg:grid-cols-5 gap-6"
     >
       <CategoryCard
         v-for="category in categories"

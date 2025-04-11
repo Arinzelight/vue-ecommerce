@@ -32,42 +32,44 @@ const handleToggleFavorite = (e, product) => {
 
 <template>
   <div class="overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+      <thead class="bg-gray-50 dark:bg-gray-700">
         <tr>
           <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
           >
             Image
           </th>
           <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
           >
             Name
           </th>
           <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
           >
             Price
           </th>
           <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
           >
             Category
           </th>
           <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
           >
             Actions
           </th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
+      <tbody
+        class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700"
+      >
         <tr
           v-for="product in products"
           :key="product.id"
           @click="visitProduct(product)"
-          class="hover:bg-gray-50 cursor-pointer"
+          class="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
         >
           <td class="px-6 py-4 whitespace-nowrap">
             <div class="flex-shrink-0 h-10 w-10">
@@ -80,16 +82,18 @@ const handleToggleFavorite = (e, product) => {
             </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
-            <div class="text-sm font-medium text-gray-900">
+            <div class="text-sm font-medium text-gray-900 dark:text-white">
               {{ product.title }}
             </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
-            <div class="text-sm text-gray-900">${{ product.price }}</div>
+            <div class="text-sm text-gray-900 dark:text-white">
+              ${{ product.price }}
+            </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
             <span
-              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-secondary-700"
+              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-secondary-700 dark:bg-blue-900 dark:text-blue-100"
             >
               {{ product.category?.name || "Uncategorized" }}
             </span>
@@ -104,8 +108,9 @@ const handleToggleFavorite = (e, product) => {
             >
               <Heart
                 :class="{
-                  'fill-rose-500 stroke-rose-600 ': isFavorite(product),
-                  'stroke-gray-400 fill-white': !isFavorite(product),
+                  'fill-rose-500 stroke-rose-600': isFavorite(product),
+                  'stroke-gray-400 fill-white dark:fill-gray-800':
+                    !isFavorite(product),
                 }"
                 class="h-5 w-5 transition-all"
                 :stroke-width="isFavorite(product) ? 1.5 : 2"

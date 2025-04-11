@@ -3,7 +3,7 @@ import { ref, computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import apiService from "@/services/apiService";
 import { useProductStore } from "@/stores/productStore";
-import { Heart } from "lucide-vue-next";
+import { Heart, Loader2 } from "lucide-vue-next";
 
 const route = useRoute();
 const productStore = useProductStore();
@@ -51,9 +51,9 @@ const toggleFavorite = () => {
 <template>
   <div>
     <div v-if="isLoading" class="flex justify-center items-center h-64">
-      <div
-        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"
-      ></div>
+      <div v-if="isLoading" class="flex justify-center items-center h-64">
+        <Loader2 class="h-12 w-12 text-primary-500 animate-spin" />
+      </div>
     </div>
 
     <div
@@ -64,7 +64,7 @@ const toggleFavorite = () => {
     </div>
 
     <div v-else-if="product" class="grid md:grid-cols-2 gap-8">
-      <div class="bg-white rounded-lg overflow-hidden">
+      <div class="rounded-lg overflow-hidden">
         <img
           :src="product.images?.[0]"
           :alt="product.category.title"
@@ -101,7 +101,9 @@ const toggleFavorite = () => {
           </span>
         </div>
 
-        <p class="text-gray-700 mb-6">{{ product.description }}</p>
+        <p class="text-gray-700 dark:text-gray-200 mb-6">
+          {{ product.description }}
+        </p>
 
         <div class="flex space-x-4">
           <button

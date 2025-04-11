@@ -64,8 +64,8 @@ const visiblePages = computed(() => {
         v-else
         @click="goToPage(page)"
         :class="{
-          'bg-primary text-white': page === currentPage,
-          'hover:bg-gray-100': page !== currentPage,
+          'bg-primary dark:bg-gray-900 text-white': page === currentPage,
+          'hover:bg-gray-100 dark:hover:bg-gray-900': page !== currentPage,
         }"
         class="px-3 py-1 rounded-md border border-gray-300 cursor-pointer"
         :aria-label="`Go to page ${page}`"

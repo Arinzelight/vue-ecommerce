@@ -37,17 +37,12 @@ const removeFavorite = (e) => {
   e.stopPropagation();
   emit("remove", props.product.id);
 };
-
-const handleImageError = (e) => {
-  e.target.src = "https://placehold.co/400";
-  e.target.classList.replace("object-cover", "object-contain");
-};
 </script>
 
 <template>
   <div
     @click="handleClick"
-    class="group relative bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-y-1"
+    class="group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-y-1"
   >
     <!-- Favorite Button -->
     <button
@@ -68,11 +63,10 @@ const handleImageError = (e) => {
     <!-- Product Image -->
     <div class="relative pt-[100%] bg-gray-50 overflow-hidden">
       <img
-        :src="product.images?.[0] || 'https://placehold.co/400'"
+        :src="product.images?.[0]"
         :alt="product.title"
         class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
-        @error="handleImageError"
       />
 
       <!-- Quick View Overlay -->
@@ -80,7 +74,7 @@ const handleImageError = (e) => {
         class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
       >
         <div
-          class="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium"
+          class="flex items-center gap-1 bg-white/90 dark:bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium"
         >
           <Eye class="w-4 h-4" />
           <span>Quick View</span>
@@ -91,16 +85,14 @@ const handleImageError = (e) => {
     <!-- Product Info -->
     <div class="p-4">
       <div class="flex justify-between items-start gap-2">
-        <h3 class="font-medium text-gray-900 line-clamp-2 text-sm sm:text-base">
+        <h3 class="font-medium line-clamp-2 text-sm sm:text-base">
           {{ product.title }}
         </h3>
       </div>
 
       <!-- Price & Category -->
       <div class="mt-2 flex items-center justify-between">
-        <p class="text-lg font-semibold text-gray-900">
-          ${{ product.price?.toFixed(2) }}
-        </p>
+        <p class="text-lg font-semibold">${{ product.price?.toFixed(2) }}</p>
         <span
           v-if="product.category?.name"
           class="inline-block px-2.5 py-1 text-xs font-medium bg-primary-50 text-gray-800 rounded-full"

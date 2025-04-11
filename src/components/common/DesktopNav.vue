@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import { Heart } from "lucide-vue-next";
+import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
 const productStore = useProductStore();
 const favoritesCount = computed(() => productStore.favorites.length);
@@ -28,5 +29,6 @@ const favoritesCount = computed(() => productStore.favorites.length);
         {{ favoritesCount }}
       </span>
     </router-link>
+    <ThemeToggle />
   </nav>
 </template>

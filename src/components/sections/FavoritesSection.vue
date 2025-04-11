@@ -11,12 +11,10 @@ const favoriteProducts = computed(() => productStore.favorites.slice(0, 5));
 <template>
   <section
     v-if="favoriteProducts.length"
-    class="bg-white p-4 sm:p-6 rounded-xl border border-gray-100"
+    class="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-xl"
   >
     <div class="flex justify-between items-center mb-4 sm:mb-6">
-      <h2
-        class="text-xl sm:text-2xl font-semibold text-gray-900 flex items-center"
-      >
+      <h2 class="text-xl sm:text-2xl font-semibold items-center">
         <Heart class="h-5 w-5 mr-2 text-red-500 fill-rose-500" />
         Your Favorites
       </h2>

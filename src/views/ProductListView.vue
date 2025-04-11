@@ -6,6 +6,7 @@ import { useProductStore } from "@/stores/productStore";
 import ProductTable from "@/components/products/ProductTable.vue";
 import PaginationControls from "@/components/common/PaginationControls.vue";
 import ProductSort from "@/components/products/ProductSort.vue";
+import { Loader2 } from "lucide-vue-next";
 
 const route = useRoute();
 const productStore = useProductStore();
@@ -107,22 +108,24 @@ watch(
 
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-display font-bold text-gray-900 mb-6">
+    <h1 class="text-3xl font-display font-bold mb-6">
       {{
         route.params.category
           ? `${route.params.category} Products`
           : "All Products"
       }}
       <span v-if="searchTerm">
-        for "<small>{{ searchTerm }}</small
-        >"</span
+        for
+        <small class="text-gray-700 dark:text-gray-200 text-lg"
+          >"{{ searchTerm }}"</small
+        ></span
       >
     </h1>
 
     <div v-if="isLoading" class="flex justify-center items-center h-64">
-      <div
-        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"
-      ></div>
+      <div v-if="isLoading" class="flex justify-center items-center h-64">
+        <Loader2 class="h-12 w-12 text-primary-500 animate-spin" />
+      </div>
     </div>
 
     <div
@@ -136,7 +139,7 @@ watch(
       <div
         class="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
       >
-        <p class="text-gray-600">
+        <p class="text-gray-600 dark:text-white">
           Showing {{ paginatedProducts.length }} of
           {{ sortedProducts.length }} products
         </p>

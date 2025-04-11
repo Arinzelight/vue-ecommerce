@@ -11,12 +11,10 @@ const recentProducts = computed(() => productStore.lastVisited.slice(0, 5));
 <template>
   <section
     v-if="recentProducts.length"
-    class="bg-white p-4 sm:p-6 mb-[2rem] rounded-xl border border-gray-100"
+    class="bg-white dark:bg-gray-900 p-4 sm:p-6 mb-[2rem] rounded-xl"
   >
     <div class="flex justify-between items-center mb-4 sm:mb-6">
-      <h2
-        class="text-xl sm:text-2xl font-semibold text-gray-900 flex items-center"
-      >
+      <h2 class="text-xl sm:text-2xl font-semibold flex items-center">
         <Clock3 class="w-5 h-5 mr-2 text-primary" />
         Recently Viewed
       </h2>
