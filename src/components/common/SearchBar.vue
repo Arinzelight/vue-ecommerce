@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import { useDebounce } from "@/composables/useDebounce";
 import { Search } from "lucide-vue-next";
@@ -8,6 +8,7 @@ import apiService from "@/services/apiService";
 const router = useRouter();
 const searchQuery = ref("");
 const suggestions = ref([]);
+const containerRef = ref(null);
 
 const fetchSuggestions = async (query) => {
   if (!query.trim()) return (suggestions.value = []);
@@ -26,6 +27,7 @@ const fetchSuggestions = async (query) => {
 };
 
 const debouncedFetch = useDebounce(fetchSuggestions, 300);
+
 watch(searchQuery, (newQuery) => debouncedFetch(newQuery));
 
 const onSearch = () => {
@@ -40,17 +42,32 @@ const selectSuggestion = (title) => {
   searchQuery.value = title;
   onSearch();
 };
+
+// Click outside to close suggestions
+const handleClickOutside = (event) => {
+  if (containerRef.value && !containerRef.value.contains(event.target)) {
+    suggestions.value = [];
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>
-  <div class="w-full max-w-xl mx-auto md:mx-0 relative">
+  <div ref="containerRef" class="w-full max-w-xl mx-auto md:mx-0 relative">
     <div class="relative">
       <input
         v-model="searchQuery"
         @keyup.enter="onSearch"
         type="text"
         placeholder="Search products..."
-        class="w-full py-2 px-4 pr-10 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-transparent"
+        class="w-full py-2 px-4 pr-10 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-accent-50 focus:outline-none transition-all duration-100 shadow-sm focus:shadow-md"
       />
       <button
         @click="onSearch"
@@ -59,6 +76,7 @@ const selectSuggestion = (title) => {
         <Search class="w-6 h-6" />
       </button>
     </div>
+
     <ul
       v-if="suggestions.length"
       class="absolute z-50 bg-white w-full mt-1 rounded shadow text-gray-800"
