@@ -21,7 +21,6 @@ const fetchSuggestions = async (query) => {
       .map((p) => p.title)
       .slice(0, 5);
   } catch (e) {
-    console.error("Suggestion error:", e);
     suggestions.value = [];
   }
 };

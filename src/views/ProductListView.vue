@@ -89,7 +89,6 @@ const fetchProducts = async () => {
     products.value = response;
   } catch (err) {
     error.value = err.message || "Failed to fetch products";
-    console.error("Fetch error:", error.value);
   } finally {
     isLoading.value = false;
   }

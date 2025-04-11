@@ -19,7 +19,6 @@ const fetchProduct = async (id) => {
     productStore.addLastVisited(product.value);
   } catch (err) {
     error.value = err.message || `Failed to fetch product with id ${id}`;
-    console.error(error.value);
   } finally {
     isLoading.value = false;
   }
